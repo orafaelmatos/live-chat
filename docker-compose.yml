@@ -11,6 +11,18 @@ services:
       - redis
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: chat_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    environment:
+      - VITE_API_URL=http://api:8000
+
   postgres:
     image: postgres:16-alpine
     container_name: chat_postgres
@@ -44,7 +56,6 @@ services:
     working_dir: /k6
     volumes:
       - ./k6:/k6
-    command: ["run", "--out", "experimental-prometheus-rw=0.0.0.0:6565", "/k6/chat_load_test.js"]
     ports:
     - "6565:6565"
 
