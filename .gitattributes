@@ -1,2 +1,2 @@
 frontend/** linguist-vendored
-frontend/src/contexts/** linguist-vendored=false
+frontend/src/pages/** linguist-vendored=false
