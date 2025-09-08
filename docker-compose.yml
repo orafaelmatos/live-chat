@@ -1,0 +1,52 @@
+services:
+  api:
+    build: ./backend
+    container_name: chat_api
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: chat_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-admin123}
+      POSTGRES_DB: ${POSTGRES_DB:-live_chat}
+    command: postgres -c max_connections=200
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: chat_redis
+    ports:
+      - "6379:6379"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: chat_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  k6:
+    image: grafana/k6:latest
+    container_name: chat_k6
+    working_dir: /k6
+    volumes:
+      - ./k6:/k6
+    command: ["run", "--out", "experimental-prometheus-rw=0.0.0.0:6565", "/k6/chat_load_test.js"]
+    ports:
+    - "6565:6565"
+
+volumes:
+  pgdata:
