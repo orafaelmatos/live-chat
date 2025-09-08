@@ -1,4 +1,2 @@
 frontend/** linguist-vendored
 frontend/src/pages/** linguist-vendored=false
-frontend/src/pages/** linguist-vendored=false
-frontend/src/components/** linguist-vendored=false
