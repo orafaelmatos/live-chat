@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark chat theme - modern messaging app inspired */
+    --background: 222 20% 8%;
+    --foreground: 210 50% 98%;
+
+    --card: 222 20% 10%;
+    --card-foreground: 210 50% 98%;
+
+    --popover: 222 20% 12%;
+    --popover-foreground: 210 50% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 50% 98%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Chat-specific colors */
+    --chat-bubble: 220 15% 18%;
+    --chat-bubble-own: 217 91% 60%;
+    --chat-input: 220 15% 12%;
+    --online-status: 142 69% 58%;
+    --timestamp: 220 10% 50%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(250 100% 70%));
+    --gradient-card: linear-gradient(145deg, hsl(222 20% 10%), hsl(220 15% 12%));
+    
+    /* Shadows and effects */
+    --shadow-primary: 0 10px 30px -10px hsl(217 91% 60% / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(222 20% 5% / 0.4);
+    --glow-primary: 0 0 20px hsl(217 91% 60% / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as root - we default to dark */
+    --background: 222 20% 8%;
+    --foreground: 210 50% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
