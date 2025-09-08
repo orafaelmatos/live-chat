@@ -1,16 +1,10 @@
 # Live Chat
 
-**Live Chat** is a real-time messaging application built with **FastAPI**, **WebSockets**, and **PostgreSQL**, featuring:
+**Live Chat** is a modern real-time messaging application built with **FastAPI**, **WebSockets**, **React**, and **PostgreSQL**. It enables users to create chat rooms, exchange messages in **real time**, and manage memberships securely with JWT authentication.
 
-- User registration and authentication (JWT-based)
-- Real-time chat rooms with WebSocket communication
-- Persistent messages stored in PostgreSQL
-- Load testing with **k6** and performance monitoring using **Prometheus**
-- Designed for scalability and maintainability
+https://github.com/user-attachments/assets/61308c7e-f6cd-419a-af7b-9fe6adabe4b3
 
-This project demonstrates modern Python backend development practices and real-time system design, making it a valuable addition to your portfolio.
 
----
 
 ## Table of Contents
 
@@ -30,6 +24,7 @@ This project demonstrates modern Python backend development practices and real-t
 - JWT authentication
 - Chat rooms & real-time messaging
 - Message persistence with PostgreSQL
+- Create rooms and invite people
 - Load testing with k6
 - Metrics collection with Prometheus
 
@@ -69,8 +64,8 @@ docker compose up --build
 
 Services exposed:
 - API: http://localhost:8000
+- Frontend: http://localhost:8080
 - Prometheus: http://localhost:9090
-- Redis: 6379
 - PostgreSQL: 5432
 ---
 
