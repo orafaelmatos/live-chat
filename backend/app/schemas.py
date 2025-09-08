@@ -9,6 +9,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     user_id: int
+    email: str
 
 
 class UserCreate(BaseModel):
@@ -21,7 +22,6 @@ class UserOut(BaseModel):
     email: EmailStr
     created_at: datetime
 
-
     class Config:
         from_attributes = True
 
@@ -33,7 +33,7 @@ class RoomCreate(BaseModel):
 class RoomOut(BaseModel):
     id: int
     name: str
-
+    created_at: datetime
 
     class Config:
         from_attributes = True
@@ -54,3 +54,7 @@ class MessageOut(BaseModel):
 
     class Config:
         from_attributes = True
+        
+
+class AddMemberRequest(BaseModel):
+    user_email: str

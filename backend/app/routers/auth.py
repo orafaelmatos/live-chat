@@ -37,9 +37,9 @@ def login(payload: UserCreate, db: Session = Depends(get_db)):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    token = create_access_token({"user_id": user.id})
+    token_data = {"user_id": user.id, "email": user.email}
+    token = create_access_token(token_data)
     return Token(access_token=token)
-
 
 @router.get("/me", response_model=UserOut)
 def me(current_user: User = Depends(get_current_user)):

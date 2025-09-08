@@ -52,15 +52,19 @@ async def websocket_endpoint(
         Membership.user_id == current_user.id
     ).first()
     if not membership:
-        await websocket.close(code=1008)  # Policy violation
-        return
+        new_membership = Membership(user_id=current_user.id, room_id=room_id)
+        db.add(new_membership)
+        db.commit()
+        membership = new_membership
 
     await manager.connect(room_id, websocket)
     try:
         while True:
             data = await websocket.receive_text()
             # Save message to DB
-            message = Message(user_id=current_user.id, room_id=room_id, content=data)
+            payload = json.loads(data)
+            content = payload.get("content")
+            message = Message(user_id=current_user.id, room_id=room_id, content=content)
             db.add(message)
             db.commit()
             db.refresh(message)

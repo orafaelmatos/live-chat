@@ -11,6 +11,10 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Chat API", version="0.1.0")
 
+origins = [
+    "http://localhost:8080", 
+]
+
 # CORS – allow frontend (React) to call the API
 app.add_middleware(
     CORSMiddleware,
